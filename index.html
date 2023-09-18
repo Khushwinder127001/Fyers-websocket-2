@@ -3,6 +3,7 @@
 <head>
   <title>WebSocket Example</title>
   <script src="index.js"></script>
+  <script src="index.js"></script>
 </head>
 <body>
   <div id="output"></div>
@@ -10,7 +11,7 @@
 
   <script>
     // Create a WebSocket connection
-    const socket = new WebSocket('ws://localhost:8080'); // Replace with your WebSocket server URL
+    const socket = new WebSocket('ws://fyers-websocket-2-production.up.railway.app:8080/'); // Replace with your WebSocket server URL
 
     // Reference to the HTML element where you want to display WebSocket responses
     const outputDiv = document.getElementById('output');
@@ -24,6 +25,7 @@
     socket.addEventListener('message', (event) => {
       const message = event.data;
       outputDiv.innerHTML += `<p>Received: ${message}</p>`;
+      console.log(JSON.parse(message));
     });
 
     // Event handler for when the WebSocket connection is closed
