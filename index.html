@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebSocket Example</title>
+  <script src="index.js"></script>
+</head>
+<body>
+  <div id="output"></div>
+  <div id="output2"></div>
+
+  <script>
+    // Create a WebSocket connection
+    const socket = new WebSocket('ws://localhost:8080'); // Replace with your WebSocket server URL
+
+    // Reference to the HTML element where you want to display WebSocket responses
+    const outputDiv = document.getElementById('output');
+
+    // Event handler for when the WebSocket connection is opened
+    socket.addEventListener('open', (event) => {
+      outputDiv.innerHTML += '<p>WebSocket connection opened</p>';
+    });
+
+    // Event handler for when the WebSocket connection receives a message
+    socket.addEventListener('message', (event) => {
+      const message = event.data;
+      outputDiv.innerHTML += `<p>Received: ${message}</p>`;
+    });
+
+    // Event handler for when the WebSocket connection is closed
+    socket.addEventListener('close', (event) => {
+      outputDiv.innerHTML += '<p>WebSocket connection closed</p>';
+    });
+
+    // Function to send a message to the WebSocket server
+    function sendMessage() {
+      const messageToSend = document.getElementById('messageInput').value;
+      socket.send(messageToSend);
+      document.getElementById('messageInput').value = ''; // Clear the input field
+    }
+  </script>
+</body>
+</html>
